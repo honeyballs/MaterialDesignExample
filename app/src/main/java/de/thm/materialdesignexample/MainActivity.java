@@ -5,8 +5,12 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -40,6 +44,27 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         initList();
         listView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.logoutItem:
+                Toast.makeText(this, "Logout pressed", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.settingsItem:
+                Toast.makeText(this, "Settings pressed", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void initList() {
